@@ -1,5 +1,5 @@
 {
-    "name": "lambda-x-ray",
+    "name": "lambda-concept-x-ray",
     "version": "0.0.1",
     "private": true,
     "devDependencies": {
@@ -11,12 +11,12 @@
     },
     "scripts": {
         "test": "jest",
-        "configure": "exec ./configure",
-        "deploy": "exec ./deploy",
-        "s3-bucket": "exec ./s3-bucket",
-        "delete-s3-bucket": "exec ./delete-s3-bucket",
-        "build-layer": "exec ./build-layer",
-        "invoke": "exec ./invoke",
-        "clean": "exec ./clean"
+        "configure": "exec ./scripts/configure",
+        "deploy": "exec ./scripts/deploy",
+        "s3-bucket": "exec ./scripts/s3-bucket",
+        "delete-s3-bucket": "exec ./scripts/delete-s3-bucket",
+        "build-layer": "exec ./scripts/build-layer",
+        "invoke": "exec ./scripts/invoke",
+        "clean": "exec ./scripts/clean"
     }
 }
