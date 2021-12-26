@@ -1,26 +1,26 @@
-const AWSXRay = require("aws-xray-sdk-core");
-const AWS = AWSXRay.captureAWS(require("aws-sdk"));
+const XRay = require("aws-xray-sdk-core");
+const AWS = XRay.captureAWS(require("aws-sdk"));
 
-// Create client outside of handler to reuse
-const lambda = new AWS.Lambda();
+// Layer Example
+const Layer = XRay.captureAWS(require("@cloud-vault/http-responses-lambda-layer"));
 
-// Handler
+// Create Client outside of Handler for reuse
+const Lambda = new AWS.Lambda();
+
+/*** Handler (Async Handler(s) *should* return a non-awaited promise */
 exports.handler = async function (event, context) {
-    event.Records.forEach(record => {
-        console.log(record.body);
+    console.log("[Debug] Environment Variable(s)" + ":", serialize(process.env));
+    console.log("[Debug] Lambda Handler Context" + ":", serialize(context));
+    console.log("[Debug] Event" + ":", serialize(event));
+
+    return serialize({
+        message: "Hello World"
     });
-    console.log("## ENVIRONMENT VARIABLES: " + serialize(process.env));
-    console.log("## CONTEXT: " + serialize(context));
-    console.log("## EVENT: " + serialize(event));
-
-    return getAccountSettings();
 };
 
-// Use SDK client
+// Use SDK Client
 const getAccountSettings = function () {
-    return lambda.getAccountSettings().promise();
+    return Lambda.getAccountSettings().promise();
 };
 
-const serialize = function (object) {
-    return JSON.stringify(object, null, 4);
-};
+const serialize = (object) => JSON.stringify(object, null, 4);
