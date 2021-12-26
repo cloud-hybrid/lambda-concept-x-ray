@@ -2,13 +2,14 @@
     "name": "lambda-concept-x-ray",
     "version": "0.0.1",
     "private": true,
+    "dependencies": {
+        "aws-xray-sdk-core": "^3.3.4",
+        "aws-sdk": "^2.1048.0"
+    },
     "devDependencies": {
-        "aws-sdk": "latest",
         "jest": "latest"
     },
-    "dependencies": {
-        "aws-xray-sdk-core": "latest"
-    },
+    "main": "index.js",
     "scripts": {
         "test": "jest",
         "configure": "exec ./scripts/configure",
